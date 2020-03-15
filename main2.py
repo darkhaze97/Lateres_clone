@@ -29,6 +29,8 @@ clock = pygame.time.Clock()
 
 running = True
 
+lose = True
+
 #Setting up the rectangle sprite
 rect_sprites = pygame.sprite.Group()
 rectangle = Rectangle(red)
@@ -79,7 +81,8 @@ while running:
             ball.rebound_rectangle(fraction_of_rect)
             bounce_check = 1
     #Below is for if the ball hits the rectangle, and we need to reset the colour
-    if ball.rect.y + 2*ball.radius >= MAX_DEPTH - rectangle.height:
+    #Assume that there are no blocks at around MAX_DEPTH - rectangle.height - ball.radius
+    if ball.rect.y + 2*ball.radius >= MAX_DEPTH - rectangle.height - ball.radius:
         rectangle.update_rect(win, red, rect_sprites)
 
     #Below is for if we rebound off the left wall.
@@ -119,19 +122,29 @@ while running:
         i.delete_blocks(win, black, i.rect.x, i.rect.y)
         pygame.sprite.Sprite.kill(i)
 
+    #Below is the winning condition
+    if len(block_sprites) == 0:
+        running = False
+        lose = False
+
     block_sprites.draw(win)
     pygame.display.flip()
 
+#Below is to clear out the screen
 ball_sprites.empty()
 block_sprites.empty()
 rect_sprites.empty()
 win.fill(black)
 
-gameover = pygame.image.load('gameover.jpg')
-win.blit(gameover, (75, 60))
+if lose == True:
+    gameover = pygame.image.load('gameover.jpg')
+    win.blit(gameover, (75, 60))
+else: 
+    winner = pygame.image.load('youwin.jpg')
+    win.blit(winner, (127, 60))
+
 pygame.display.update()
 pygame.time.wait(1000)
-
 
 #FUTURE GOALS:
     #Set up an enemy that tries to stop you... If they shoot you, you can't move
