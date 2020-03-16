@@ -109,10 +109,10 @@ while running:
     for i in collision_list:
         #Make the below an elif. if it doesn't hit the bottom
 
-        if ball.rect.y <= i.rect.y + i.height and ball.rect.y >= i.rect.y + i.height - ball.radius:
+        if ball.rect.y <= i.rect.y + i.height and ball.rect.y >= i.rect.y + i.height - ball.radius and ball.rect.y + ball.radius >= i.rect.y + i.height:
             ball.rebound_ceiling()
         #Below elif is for if the ball bounces on top of a block.
-        elif ball.rect.y + 2*ball.radius <= i.rect.y and ball.rect.y + ball.radius >= i.rect.y:
+        elif ball.rect.y + 2*ball.radius <= i.rect.y and ball.rect.y + ball.radius >= i.rect.y and ball.rect.y + ball.radius <= i.rect.y:
             ball.rebound_horizontal()
         elif ball.rect.x + 2*ball.radius >= i.rect.x and ball.rect.x + ball.radius <= i.rect.x:
             ball.rebound_right_wall()
