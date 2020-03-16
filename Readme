@@ -1,1 +1,6 @@
+This game is a clone of breakout. You simply move the player paddle to hit a ball, which will bounce off it. Your goal is to destroy
+all the blocks at the top of the screen. 
 
+To move the paddle, you have to use the left and right arrow keys. 
+
+Please note that the "you win" and "gameover" screens are not created by me, and the credit for these images go to the rightful creators.
