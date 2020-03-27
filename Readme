@@ -1,3 +1,6 @@
+Please run:
+pip3 install -r requirements.txt
+
 This game is a clone of breakout. You simply move the player paddle to hit a ball, which will bounce off it. Your goal is to destroy
 all the blocks at the top of the screen. 
 
